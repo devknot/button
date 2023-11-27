@@ -1,0 +1,11 @@
+[target.riscv32imac-unknown-none-elf]
+rustflags = [
+	"-C", "link-arg=-Tmemory.x",
+]
+
+runner = "gdb-multiarch -q -x openocd.gdb"
+
+[build]
+target = "riscv32imac-unknown-none-elf"
+rustflags = ["-C", "link-arg=-nostdlib",  "-C", "link-arg=-static"]
+

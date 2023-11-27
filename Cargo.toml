@@ -1,0 +1,57 @@
+[package]
+name = "krono"
+version = "0.1.0"
+edition = "2021"
+authors     = ["Aderlan <aderlancastromelo@gmail.com>"]
+readme      = "readme.md"
+license-file = "license"
+
+[profile.dev]
+opt-level = 'z'
+codegen-units = 2
+lto = true
+
+[profile.release]
+opt-level = 'z'
+debug = false
+overflow-checks = false
+strip = true
+codegen-units = 2
+lto = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+riscv = {version = "0.10", features = ["critical-section-single-hart"]}
+critical-section = "1.1"
+bit_field = "0.10"
+embedded-hal = "0.2"
+riscv-rt = "0.11"
+gd32vf103xx-hal = "0.5"
+gd32vf103-pac = "0.4"
+embedded-graphics = "0.7"
+st7735-lcd =  "0.8"
+vcell = "0.1"
+nb = "1.1"
+generic-array = "1.0"
+typenum = "1.17"
+embedded-sdmmc = "0.6"
+usb-device = "0.2"
+portable-atomic = "1.5"
+emballoc = "0.1"
+#longan-nano = {version =  "0.3", feature = ["lcd"] }
+#embedded-alloc = "0.5"
+#talloc = "2.0"
+ 
+#portable-atomic = { version = "1", default-features = false, features = ["critical-section"] }
+
+[dependencies.longan-nano]
+version = "0.3"
+features = ["lcd", "sdcard"]
+
+[dev-dependencies]
+xml-rs = "0.8"
+
+[package.metadata.docs.rs]
+cargo-args = ["-Zbuild-std=core"]
+
